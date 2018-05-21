@@ -2,6 +2,7 @@ package com.xyc.gugu.picturescanner;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -9,7 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -21,6 +25,8 @@ public class PictureActivity extends FragmentActivity {
     private ImageView ivPic;
     public static final String PIC_CONFIG = "picConfig";
     private ArrayList<String> picList;
+    private ViewPager imgViewpager;
+    private FrameLayout rlLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +45,26 @@ public class PictureActivity extends FragmentActivity {
             return;
         }
         picList = intent.getStringArrayListExtra("url_list");
+        int pic_position = intent.getIntExtra("pic_position", 0);
+
         if (picList == null) {
             return;
         }
-        Glide.with(this).load(picList.get(0)).into(ivPic);
+        ImageAdapter adapter = new ImageAdapter(this,picList);
+        imgViewpager.setAdapter(adapter);
+        imgViewpager.setCurrentItem(pic_position);
     }
 
     private void initView() {
         ivPic = (ImageView) findViewById(R.id.ivPic);
+        imgViewpager = (ViewPager) findViewById(R.id.imgViewpager);
+        rlLayout = (FrameLayout) findViewById(R.id.rlLayout);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, R.anim.activity_zoom_close);
     }
 
     public static Intent makeIntent(Context context, PicConfig picConfig) {
