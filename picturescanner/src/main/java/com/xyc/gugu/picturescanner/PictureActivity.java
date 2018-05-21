@@ -47,12 +47,6 @@ public class PictureActivity extends FragmentActivity {
 
     private void initView() {
         ivPic = (ImageView) findViewById(R.id.ivPic);
-        ivPic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
     }
 
     public static Intent makeIntent(Context context, PicConfig picConfig) {
