@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void goNext(){
         ArrayList<String> urls = new ArrayList<>();
+        urls.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526885603730&di=f36702adeea1c40b4b75ec659a4870e9&imgtype=0&src=http%3A%2F%2Fd.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2F8c1001e93901213fab66256a58e736d12f2e952a.jpg");
         PicConfig picConfig = new PicConfig.Builder()
                 .setPosition(0)
                 .setIsShowNumber(true)
