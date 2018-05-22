@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
@@ -29,6 +30,7 @@ public class PictureActivity extends FragmentActivity {
     private ViewPager imgViewpager;
     private RelativeLayout rlLayout;
     private TextView tvImgCount;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +57,8 @@ public class PictureActivity extends FragmentActivity {
         ImageAdapter adapter = new ImageAdapter(this, picList);
         imgViewpager.setAdapter(adapter);
         imgViewpager.setCurrentItem(pic_position);
-        tvImgCount.setText((pic_position+1) + "/" + picList.size());
+        tvImgCount.setText((pic_position + 1) + "/" + picList.size());
+
         imgViewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -64,7 +67,7 @@ public class PictureActivity extends FragmentActivity {
 
             @Override
             public void onPageSelected(int position) {
-                tvImgCount.setText((position+1) + "/" + picList.size());
+                tvImgCount.setText((position + 1) + "/" + picList.size());
             }
 
             @Override
@@ -81,12 +84,11 @@ public class PictureActivity extends FragmentActivity {
         tvImgCount = findViewById(R.id.tvImgCount);
 
     }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(0, R.anim.activity_zoom_close);
-    }
+        @Override
+        public void onBackPressed () {
+            super.onBackPressed();
+            overridePendingTransition(0, R.anim.activity_zoom_close);
+        }
 
     public static Intent makeIntent(Context context, PicConfig picConfig) {
         Intent intent = new Intent(context, PictureActivity.class);

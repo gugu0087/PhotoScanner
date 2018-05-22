@@ -3,9 +3,12 @@ package com.xyc.gugu.picturescanner;
 import android.app.Activity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+
 import com.bm.library.PhotoView;
 import com.bumptech.glide.Glide;
 
@@ -48,6 +51,20 @@ public class ImageAdapter extends PagerAdapter {
         String imgUrl = imgs.get(position);
         View view = (View) LayoutInflater.from(mContext).inflate(R.layout.img_browse, null);
         PhotoView img = (PhotoView) view.findViewById(R.id.img_plan);
+        RelativeLayout rlItemLayout = (RelativeLayout) view.findViewById(R.id.rlItemLayout);
+        rlItemLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               mContext.finish();
+            }
+        });
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.finish();
+
+            }
+        });
         img.enable();
         Glide.with(mContext).load(imgUrl).into(img);
         ((ViewPager) container).addView(view);
