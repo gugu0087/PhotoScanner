@@ -86,8 +86,7 @@ public class PictureActivity extends FragmentActivity {
         @Override
         public void onBackPressed () {
             super.onBackPressed();
-
-            //overridePendingTransition(0, R.anim.activity_zoom_close);
+            overridePendingTransition(0, R.anim.activity_zoom_close);
         }
 
     public static Intent makeIntent(Context context, PicConfig picConfig) {
