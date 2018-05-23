@@ -42,6 +42,7 @@ public class PictureActivity extends FragmentActivity {
         initView();
         initData();
     }
+
     private void initData() {
         Intent intent = getIntent();
         if (intent == null) {
@@ -55,6 +56,9 @@ public class PictureActivity extends FragmentActivity {
         }
         ImageAdapter adapter = new ImageAdapter(this, picList);
         imgViewpager.setAdapter(adapter);
+        if (pic_position >= picList.size()) {
+            pic_position = picList.size() - 1;
+        }
         imgViewpager.setCurrentItem(pic_position);
         tvImgCount.setText((pic_position + 1) + "/" + picList.size());
 
@@ -83,11 +87,12 @@ public class PictureActivity extends FragmentActivity {
         tvImgCount = findViewById(R.id.tvImgCount);
 
     }
-        @Override
-        public void onBackPressed () {
-            super.onBackPressed();
-            overridePendingTransition(0, R.anim.activity_zoom_close);
-        }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, R.anim.activity_zoom_close);
+    }
 
     public static Intent makeIntent(Context context, PicConfig picConfig) {
         Intent intent = new Intent(context, PictureActivity.class);
