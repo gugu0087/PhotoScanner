@@ -36,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
                 goNext();
             }
         });
+        ivImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goNext();
+            }
+        });
     }
 
     private void goNext(){

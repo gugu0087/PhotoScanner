@@ -56,12 +56,14 @@ public class ImageAdapter extends PagerAdapter {
             @Override
             public void onClick(View v) {
                mContext.finish();
+                mContext.overridePendingTransition(0,0);
             }
         });
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mContext.finish();
+                mContext.overridePendingTransition(0,0);
 
             }
         });
