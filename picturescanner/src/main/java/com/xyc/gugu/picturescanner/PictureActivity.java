@@ -60,6 +60,11 @@ public class PictureActivity extends FragmentActivity {
             pic_position = picList.size() - 1;
         }
         imgViewpager.setCurrentItem(pic_position);
+        if (picList.size() > 1) {
+            tvImgCount.setVisibility(View.VISIBLE);
+        } else {
+            tvImgCount.setVisibility(View.GONE);
+        }
         tvImgCount.setText((pic_position + 1) + "/" + picList.size());
 
         imgViewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
